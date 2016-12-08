@@ -1,0 +1,149 @@
+.bookrack-hot {
+	width: 1100px;
+	height: 600px;
+	background-color: #fff;
+}
+.hot-ul {
+	width: 1050px;
+	height: 250px;
+	margin-left: 40px;
+	padding-top: 20px;
+}
+.hot-ul li {
+	list-style: none;
+	float: left;
+}
+.effect {
+	width: 250px;
+	height: 254px;
+	overflow: hidden;
+}
+.book-img {
+	cursor: pointer;
+    transition: all 1.5s;
+}
+.book-img:hover{
+    transform: scale(1.2);
+        }
+.book-img {
+	width: 250px;
+	height: 250px;
+}
+.hot-ul-li {
+	margin-top: 30px;
+	width: 517px;
+	height: 189px;
+}
+.bookrack-hot p {
+	color: #fff;
+	font-size: 17px;
+	
+}
+.hot-lbl b{
+	opacity: 0.8;
+	height: 48px;
+	width: 250px;
+	background-color: #000;
+	display: inline-block;
+}
+.hot-lbl {
+	margin-top: -52px;
+	width: 250px;
+}
+.p-warp {
+    position: relative;
+    top: -50px;
+}
+
+.p2 {
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+.p1 {
+	float: left;
+    margin-left: 20px;
+	margin-top: 10px;
+}
+.hot-ul-li ul{
+    width: 327px;
+    height: 85px;
+    margin: 0 auto;
+}
+.hot-title-left {
+	width: 200px;
+	height: 70px;
+	border-right: 2px solid #003868;
+}
+.hot-title-left p {
+	font-family: times;
+    font-size: 30px;
+    color: #003868;
+}
+.hot-title-right p {
+     font-family: times;
+     font-size: 20px;
+     font-weight: bold;
+     color: #003868;
+ }
+ .hot-title-right {
+ 	width: 100px;
+ 	height: 70px;
+ 	margin-left: 20px;
+ 	margin-top: 20px;
+ }
+
+ #p1-1 {
+ 	margin-left: 25px; 
+ 	width: 450px;
+ 	font-size: 15px;
+ 	float: left;
+ 	 color: #003868;
+ }
+
+.hot-ul-2 li {
+	float: left;
+	list-style: none;
+}
+.hot-ul-2 {
+	margin-left: 40px;
+}
+
+.best-seller {
+	background-color: #D1E1E0;
+	width: 1100px;
+	height: 458px;
+}
+.seller-title {
+	margin: 0 auto;
+	height: 100px;
+}
+.seller-book-li {
+	width: 211px;
+	height: 317px;
+	background: #fff;
+	float: left;
+	margin-left: 51px;
+}
+.h1 {
+	text-align: center;
+	font-size: 15px;
+	margin-top: 10px;
+}
+.seller-book-li a {
+	text-decoration: none;
+}
+.seller-book-wrap {
+	width: 191px;
+	height: 222px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.seller-book-wrap img {
+	width: 191px;
+	height: 218px;
+
+}
+.seller-book {
+	clear: both;
+}

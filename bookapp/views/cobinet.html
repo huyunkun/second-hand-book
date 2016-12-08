@@ -1,0 +1,82 @@
+{%extends 'common/layout.html'%}
+
+{%block style%}
+{%parent%}
+<link rel="stylesheet" href="../css/cobinet-center.css">
+{%endblock%}
+
+{% block content %}
+<div class="center">
+        <div class="swop">
+            <div class="swop-title">
+                <ul>
+                    <li class="swop-title-left">
+                        <p>EXCHANGE</p>
+                        <P>BOOK</P>
+                    </li>
+                    <li class="swop-title-right">
+                        <P>易阁</P>
+                    </li>
+                </ul>
+            </div>
+            <div class="swop-book">
+                <ul>
+                    <li class="swop-book-li">
+                        <div class="swop-book-wrap">
+                            <a href="">
+                                <img src="img/xiuxi.jpg" class="book-img">
+                            </a>
+                        </div>
+                        <a href="">
+                            <h1 class="h1">漫长的中场休息</h1>
+                            <p class="h1">￥31</p>
+                        </a>
+                    </li>
+                    <li class="swop-book-li">
+                        <div class="swop-book-wrap">
+                            <a href="">
+                                <img src="img/xiuxi.jpg" class="book-img">
+                            </a>
+                        </div>
+                        <a href="">
+                            <h1 class="h1">漫长的中场休息</h1>
+                            <p class="h1">￥31</p>
+                        </a>
+                    </li>
+                    <li class="swop-book-li">
+                        <div class="swop-book-wrap">
+                            <a href="">
+                                <img src="img/xiuxi.jpg" class="book-img">
+                            </a>
+                        </div>
+                        <a href="">
+                            <h1 class="h1">漫长的中场休息</h1>
+                            <p class="h1">￥31</p>
+                        </a>
+                    </li>
+                    <li class="swop-book-li">
+                        <div class="swop-book-wrap">
+                            <a href="">
+                                <img src="img/xiuxi.jpg" class="book-img">
+                            </a>
+                        </div>
+                        <a href="">
+                            <h1 class="h1">漫长的中场休息</h1>
+                            <p class="h1">￥31</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% if user %}
+{% block planModal %}
+{% parent %}
+{% endblock %}
+{% endif %}
+
+{%block script%}
+{%parent%}
+{%endblock%}

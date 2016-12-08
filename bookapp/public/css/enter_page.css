@@ -1,0 +1,79 @@
+*{
+   margin:0;
+   padding: 0;
+   font-weight: bold;
+   font-size: 20px;
+   font-family: " 华文行楷";
+}
+html {
+	height: 1000px;
+}
+body {
+	height: 1000px;
+}
+.enter-back {
+	background-image: url("img/enter-back.jpg");
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+.login-warp {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	padding-top: 350px;
+}
+img {
+	margin-left: 80px;
+	width: 100px;
+	height: 100px;
+}
+span {
+	font-size: 45px;
+	color: #fff;
+	margin-left: 70px;
+}
+.enter-back ul {
+	position: relative;
+	width: 400px;
+}
+li {
+	list-style: none;
+	line-height: 60px;
+}
+.icon {
+	position: absolute;
+	left: 0;
+	z-index:5;
+	background-image: url("img/icon.png");
+ 	background-repeat: no-repeat; 
+ 	background-size: 450px;
+    height: 27px;
+    width: 27px;
+    padding-top: 20px;
+    padding-left: 4px;
+}
+.user-name {
+	background-position:-346px -54px;
+}
+.user-password {
+	background-position:-206px 17px;
+
+}
+input {
+	height: 35px;
+	padding-left: 35px;
+	border:none;
+	outline:medium;
+}
+.login-btn button{
+	width: 245px;
+	height: 39px;
+	color: #fff;
+	background: #272636;
+	border:none;
+	outline:medium;
+}
+.login-btn button:hover {
+    background: #293C4B;
+}

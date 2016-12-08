@@ -1,0 +1,73 @@
+.center {
+	width: 1190px;
+	overflow: hidden;
+    margin: 0 auto;
+    color: #696a6e;
+    margin-bottom: 50px;
+}
+.about span {
+	font-size: 30px;
+	font-weight: bold;
+	color: #000;
+	margin-left: 530px;
+
+}
+
+.preface {
+	text-align: center;
+	margin-top: 30px;
+}
+.main-txt {
+	margin-top:60px;
+	margin-left: 245px;
+	width: 700px;
+    text-align: center;
+    line-height: 40px;
+}
+.book {
+	margin-top:70px; 
+	width: 595px;
+	height: 423px;
+	float: left;
+
+}
+.book div {
+	height: 423px;
+	background-color: #404550;
+	opacity: 0.8;
+	transition: 1s;
+}
+.bookranck {
+	background-image: url("/img/bookkrack.jpg");
+	background-repeat: no-repeat;
+	background-size: 595px,600px;
+}
+.swop {
+	background-image: url("/img/swop.jpg");
+	background-repeat: no-repeat;
+	background-size: 595px,600px;
+}
+.book a {
+    display: inline-block;
+	font-size: 70px;
+    color: #fff;
+    text-decoration: none;
+    border: 5px solid #fff;
+    width: 300px;
+    text-align: center;
+    font-family:" 华文行楷";
+    position: relative;
+    margin-left: 147px;
+    top: -250px;
+    opacity: 0.5;
+    transition: 1s;
+}
+.book div:hover {
+	opacity:0;
+	transition: 1s;
+}
+.book a:hover {
+	opacity:1;
+	transition: 1s;
+}
+

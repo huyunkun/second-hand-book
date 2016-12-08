@@ -1,0 +1,95 @@
+* {
+    margin:0;
+    padding:0;
+}
+body {
+    font-family: "微软雅黑";
+	color: #000;
+}
+.header {
+	height: 670px;
+	margin-bottom: 80px;
+}
+.back_warp {
+	height: 670px;
+    position: relative;
+    width: 1349px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.back {
+    width:2700px;
+    height: 670px;
+    overflow: hidden;
+}
+li {
+    float: left;
+    list-style-type: none;
+}
+.back_img img {
+     width: 1349px;
+     height: 670px;
+}
+.btn-warp {
+	position: relative;
+	top: -400px;
+	width: 1349px;
+	height: 75px;
+	overflow: hidden;
+}
+.btn-warp a {
+	display: inline-block;
+	height: 75px;
+	width: 75px;
+}
+.arrow-span:hover {
+     opacity:0.5;
+     background-color: #fff;
+     display: block;
+}
+.btn-prev .arrow-ico:hover {
+	background-position:-80px 0px;
+}
+.btn-next .arrow-ico:hover {
+	background-position:-240px 0px;
+}
+.arrow-ico {
+	display: inline-block;
+	 width: 75px;
+     height: 75px;
+     background-image: url("/img/arrow.png");
+     background-repeat: no-repeat;
+}
+.btn-prev {
+	float: left;
+}
+.btn-next {
+	float: right;
+}
+.btn-next .arrow-ico {
+		background-position:-160px 0px; 
+}
+.enter a {
+	display: inline-block;
+	font-size: 70px;
+    /*font-weight: bold;*/
+    color: #fff;
+    text-decoration: none;
+    border: 5px solid #fff;
+    width: 300px;
+    text-align: center;
+    font-family:" 华文行楷";
+    opacity: 0.3;
+    transition: 1s;
+}
+.enter a:hover{
+	opacity: 1;
+	transition: 1s;
+}
+.enter {
+	position: relative;
+	top:-490px;
+	margin-left: 42%;
+	width: 150px;
+	height: 75px;	
+}
