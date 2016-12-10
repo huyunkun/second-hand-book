@@ -1,5 +1,5 @@
 .personal-mid {
-	background:url("/img/back.jpg"); 
+	background:url("img/back.jpg"); 
 	background-repeat: no-repeat;
 	background-size: 1920px;
 	height: 1079px;
@@ -70,6 +70,11 @@
 .mid-tabs li {
 	list-style: none;
 }
+.shu {
+	width: 300px;
+	height: 150px;
+	margin-left: 300px;
+}
 .mid-tabs {
 	text-align: center;
 	width: 160px;
@@ -78,7 +83,7 @@
 }
 .mid-tabs-bd {
 	height: 50px;
-	border-bottom: 1px solid #ccc;
+	
 	border-top: 1px solid #000;
 }
 .bd {
@@ -91,15 +96,67 @@
 	color: #000;
 }
 .sum-1 {
-	width: 245px;
-	height: 40px;
+	width: 704px;
+	height: 170px;
+	border-bottom: 1px solid #ccc;
 }
-.buttom-line {
+.data-title {
+	width: 887px;
+	height: 30px;
+	margin-bottom: 10px;
+	margin-top: 50px;
+}
+.sumjuli {
+	float: left;
+	margin-left: 39px;
+	margin-top: 20px;
+}
+.sum-1-img img{
+	width: 100px;
+	height: 100px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.sumtxt {
+	font-size: 15px;
+}
+.sum-1-name {
+	font-size: 15px;
+	margin-left: 72px;
+}
+.sumtxt input {
+	font-size: 15px;
+	border: none;
+	outline:medium;
+	margin-left: 20px;
+}
+.sum-2 {
+	width: 704px;
+	height: 70px;
+	border-bottom: 1px solid #ccc;
+}
+.data-btn {
+    border: none;
+    outline:medium;
+    width: 160px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #262e38;
+    color: #fff;
+    border-radius: 10px;
+}
+.data-btn:hover {
+    background: #293C4B;
+}
+/*.buttom-line {
 	border-bottom: 1px solid #ccc;
 }
 .buttom-img {
 	width: 300px;
 	height: 300px;
 	float: right;
-	margin-top: 236px;
+	margin-top: -182px;
+}*/
+.title-two {
+	color: #ccc;
 }

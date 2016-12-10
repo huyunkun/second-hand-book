@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+//路由信息
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -15,12 +15,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 
 
-global.dbHandel = require('./datacase/dbHandel');
-global.db = mongoose.connect('mongodb://localhost:27017/test');
-
 // 加上 use(multer())
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(multer());
 app.use(cookieParser());
 
 // view engine setup
@@ -40,7 +36,6 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/enter',index);//enter路由
 app.use('/login',index);//login路由
-
 app.use('/loginout',index);//注销路由
 
 

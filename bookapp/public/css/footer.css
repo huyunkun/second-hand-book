@@ -15,10 +15,16 @@
 	font-family:" 华文行楷";
 	font-size: 20px;
 }
+.top-ten-warp {
+    overflow: hidden;
+    width: 350px;
+    height: 124px;
+}
 .top-ten {
-	height:105px;
-	overflow: hidden;
+	position: relative;
+	height:315px;
 	margin-top: 20px;
+	clear: both;
 }
 .top-ten li {
 	clear: both;

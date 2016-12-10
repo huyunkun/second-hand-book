@@ -20,19 +20,31 @@ router.get('/cobinet',function (req,res,next) {
 router.get('/login',function (req,res,next) {
 	res.render('login',{});
 })
+/* GET personal. */
+router.get('/personal-data',function (req,res,next) {
+    res.render('personal-data',{});
+})
 
+router.get('/personal',function (req,res,next) {
+    res.render('personal',{});
+})
+
+router.get('/personal-site',function (req,res,next) {
+    res.render('personal-site',{});
+})
 
 
 var mongoose = require('mongoose');
-var uri = 'mongodb://localhost/nodetest1';
+mongoose.Promise = global.Promise;  
+var uri = 'mongodb://localhost/bookrack';
+var db = mongoose.connect(uri);
 var fs = require('fs');//node.js核心的文件处理模块
 var formidable = require('formidable');//文件上传插件
 
-
-var schemaUser = mongoose.Schema({
-    name : String,
-    password : String,
-
+var mybook = mongoose.Schema({
+    bookname : String,
+    write:String,
+    price:String
 });
 
 var schemaU = mongoose.Schema({
@@ -41,9 +53,15 @@ var schemaU = mongoose.Schema({
     identity: String
 })
 
-
+var mybook = mongoose.model('book',mybook);//书本信息
 var User = mongoose.model('User', schemaU);//用户表
 
+var mybook = new mybook({
+    bookname:"盗墓笔记",
+    write:"南派三叔",
+    price:"￥25"
+});
+mybook.save(function(err) {});
 
 //用户注册render数据
 exports.reg = function (req,res) {
@@ -54,168 +72,6 @@ exports.reg = function (req,res) {
         username: req.session.username
 	});
 }
-// 底部的render数据
-// exports.buttomtop = function (req, res) {
-//     var top = [
-//         {num: 1, list: '《盗墓笔记》'},
-//         {num: 2, list: '《私募操盘高手投资实战技巧》'},
-//         {num: 3, list: '《平凡的世界》'},
-//         {num: 4, list: '《穆斯林的葬礼》'},
-//         {num: 5, list: '《白夜行》'},
-//         {num: 6, list: '《同级生》'},
-//         {num: 7, list: '《挪威的森林》'},
-//         {num: 8, list: '《秒速五厘米》'},
-//         {num: 9, list: '《教父》'},
-//         {num: 10, list: '《苏菲的世界》'}
-//     ];
-//     var write = [
-//         {list:'南派三叔'},
-//         {list:'连升'},
-//         {list:'路遥'},
-//         {list:'霍达'},
-//         {list:'东野圭吾'},
-//         {list:'东野圭吾'},
-//         {list:'村上春树'},
-//         {list:'新海诚'},
-//         {list:'马里奥·普佐 '},
-//         {list:'乔斯坦·贾德'}
-//     ];
-
-//      res.render('buttomtop', {
-//         title: 'top10',
-//         navNum: 1,
-//         top: top,
-//         write: write,
-//         username: req.session.username,
-//         identity: req.session.identity
-//     });
-// };
-//information的数据
-// exports.information = function (req,res) {
-// 	var message = [
-//         {list:'地址：西南民族大学'},
-//         {list:'电话：12343535'},
-//         {list:'邮箱：64783848@qq.com'}
-// 	]
-// 	 res.render('information', {
-//         title: '信息',
-//         navNum: 1,
-//         top: top,
-//         write: write,
-//         username: req.session.username,
-//         identity: req.session.identity
-//     });
-// }
-//bookrackhot列表
-// exports.bookrackhot = function (req,res) {
-// 	var data = [
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-// 	];
-//         res.render('bookrackhot', {
-// 	        title: "火热推介",
-// 	        navNum: 5,
-// 	        navFirst: 3,
-// 	        data: data,
-// 	        username: req.session.username,
-// 	        identity: req.session.identity
-// 	    })
-// }
-
-//bookrack best-seller列表
-// exports.bestseller = function (req,res) {
-// 	var data = [
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-//         {
-//         	src: "../images/01.jpg",
-//         	title: "book",
-//         	price: "$20"
-//         },
-// 	];
-// 	res.render('bestseller', {
-//         title: "火热销售",
-//         navNum: 6,
-//         data: data,
-//         username: req.session.username,
-//         identity: req.session.identity
-//     })
-// }
-//用户检测
-// exports.doReg = function (req, res) {
-//     //检查密码
-//     if (req.body['password-repeat'] != req.body['password']) {
-//         //req.flash('error', '两次输入的密码不一致');
-//         return res.redirect('/reg');
-//     }
-
-//     //生成md5的密码
-//     var md5 = crypto.createHash('md5');
-//     var password = md5.update(req.body.password).digest('base64');
-
-//     var newUser = new User({
-//         username: req.body.username,
-//         password: password,
-//         identity: req.body.identity
-//     });
-
-//      //检查用户名是否已经存在
-//     User.find({'username': newUser.username}, function (err, user) {
-//         if (user.length != 0) {
-//             //res.send(user.length);
-//             req.flash('error', "用户名已经存在");
-//             return res.redirect('/reg');
-//         }
-//         //如果不存在則新增用戶
-//         newUser.save(function (err) {
-//             if (err) {
-//                 return res.redirect('/reg');
-//             }
-//             res.redirect('/login');
-//         });
-//     });
-// };
 //用户登入
 router.post('/login', function (req, res, next) {
     var md5 = crypto.createHash('md5'),

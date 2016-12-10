@@ -12,15 +12,16 @@ body {
 }
 .back_warp {
 	height: 670px;
-    position: relative;
     width: 1349px;
     overflow: hidden;
     margin: 0 auto;
 }
 .back {
+    position: relative;
     width:2700px;
     height: 670px;
     overflow: hidden;
+    clear: both;
 }
 li {
     float: left;
@@ -89,7 +90,7 @@ li {
 .enter {
 	position: relative;
 	top:-490px;
-	margin-left: 42%;
+	margin-left: 40%;
 	width: 150px;
 	height: 75px;	
 }

@@ -14,9 +14,9 @@
 				<p>易阁</p>
 			</a>
                 {% if user %}
-                <a href="javascript:;"><p>欢迎{{ user.nickname }},去书店</p></a>
+                <a href="javascript:;"><p>欢迎{{ user.nickname }},个人中心</p></a>
                 {% else %}
-                <a href="#modal" class="J-trigger" id="personal"><p>去书店</p></a>
+                <a href="/personal-data" class="J-trigger" id="personal"><p>我的</p></a>
                 {% endif %}
 		</div>
 	</div>
