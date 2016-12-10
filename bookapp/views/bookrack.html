@@ -1,9 +1,11 @@
 {%extends 'common/layout.html'%}
+{% block title%}bookrack{% endblock %}
 
 {%block style%}
 {%parent%}
 <link rel="stylesheet" href="../css/bookrack-hot.css">
 <link rel="stylesheet" href="../css/bookrack-center.css">
+{{ title }}
 {%endblock%}
 
 {% block content %}
@@ -39,20 +41,20 @@
                         <p id="p1-1">Love is a lamp, while friendship is the shadow. When the lamp is off,you will find the shadow everywhere. Friend is who can give you strength at last.</p>
                         <p id="p1-1">爱情是灯，友情是影子，当灯灭了，你会发现你的周围都是影子。朋友，是在最后可以给你力量的人</p>
                     </li>
-                    <li>
-                        <div class="effect">
-                            <a href="">
-                                <img src="img/gaobai.jpg" class="book-img">
-                            </a>
-                        </div>
-                        <div class="hot-lbl">
-                            <b></b>
-                            <div class="p-warp">
-                                <p class="p1">告白</p>
-                                <p class="p2">￥25</p>
+                        <li>
+                            <div class="effect">
+                                <a href="">
+                                    <img src="/img/gaobai.jpg" class="book-img">
+                                </a>
                             </div>
-                        </div>
-                    </li>
+                            <div class="hot-lbl">
+                                <b></b>
+                                <div class="p-warp">
+                                    <p class="p1">告白</p>
+                                    <p class="p2">￥25</p>
+                                </div>
+                            </div>
+                        </li>
                 </ul>
                 <ul class="hot-ul-2">
                     <li class="hot-ul-2-li">
@@ -178,7 +180,7 @@
     </div>
 {% endblock %}
 
-{% if user %}
+<!-- {% if user %}
 {% block planModal %}
 {% parent %}
 {% endblock %}
@@ -186,4 +188,4 @@
 
 {%block script%}
 {%parent%}
-{%endblock%}
+{%endblock%} -->

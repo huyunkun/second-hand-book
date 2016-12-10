@@ -9,13 +9,13 @@ body {
 	background-color: #f1f0eb;
 }
 .personal-header {
-	width: 100%;
+	width: 1349px;
 	height: 148px;
 	background-color: #262e38;
 }
 .personal-header img {
 	float: left;
-	margin-left: 500px;
+	margin-left: 122px;
 }
 .top-title a {
 	display: inline-block;
@@ -35,4 +35,8 @@ body {
 }
 .top-title span {
 	color: #fff;
+}
+#personal {
+	width: 57px;
+	height: 20px;
 }
