@@ -7,18 +7,18 @@
 </head>
 <body>
 	<div class="enter-back">
-	<div class="login-warp">
+	<form class="login-warp" action="/uenter" method="post">
 		 <img src="/img/login-icon.png"><br/>
 		<span>Login</span>
 		<div class="enter-form">
 			<ul>
 				<li>
 				    <i class="icon user-name"></i>
-					<input type="text">
+					<input type="text" name="username">
 				</li>
 				<li> 
 					<i class="icon user-password"></i>
-					<input type="password">
+					<input type="password" name="password">
 				</li>
 			</ul>
 		</div>
@@ -28,7 +28,7 @@
 		<div class="login-btn">
 			<button>Enter</button>
 		</div>
-	</div>
+	</form>
        
 	</div>
 </body>

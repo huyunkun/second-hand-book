@@ -15,7 +15,7 @@ function roll_next() {
 
 	var i = $('.back li:eq(0)').attr('data-img');
 
-	$back.animate({"left":"-1349px"},1000,function () {
+	$back.animate({"left":"-1349px"},1500,function () {
 		$back.css("left","0")
 		$('.active').remove();
 		$back.append("<li class='back_img' data-img='"+i+"'><img src='/img/"+i+".jpg'></li>");
@@ -30,7 +30,7 @@ function roll_prve() {
    $back.prepend("<li class='back_img' data-img='"+i+"'><img src='/img/"+i+".jpg'></li>");
 
     $back.css({'left':'-1349px'})
-	$back.animate({"left":"0"},1000,function () {
+	$back.animate({"left":"0"},1500,function () {
 		$('.active').remove();
 	})
 

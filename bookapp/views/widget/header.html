@@ -13,10 +13,12 @@
 				<span>Cobinet</span><br/>
 				<p>易阁</p>
 			</a>
-                {% if user %}
-                <a href="javascript:;"><p>欢迎{{ user.nickname }},个人中心</p></a>
+			
+				{% if user %}
+                <a href="javascript:;"><p>欢迎{{ user.username }},个人中心</p></a>
                 {% else %}
-                <a href="/personal-data" class="J-trigger" id="personal"><p>我的</p></a>
+                <a href="/enter" class="J-trigger" id="personal"><p>登录</p></a>
                 {% endif %}
+			
 		</div>
 	</div>

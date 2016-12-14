@@ -7,36 +7,36 @@
 </head>
 <body>
 	<div class="enter-back">
-	<div class="login-warp">
+	<form class="login-warp" method="post" action="/ulogin">
 		 <img src="/img/login-icon.png"><br/>
 		<span>Login</span>
-		<div class="enter-form">
+		<div class="enter-form"  >
 			<ul>
 				<li>
 				    
 				    <i class="icon user-name"></i>
-					<input type="text" name="" placeholder="请输入用户名">
+					<input type="text" name="username" placeholder="请输入用户名">
 				</li>
 				<li> 
 					<i class="icon user-password"></i>
-					<input type="password" name="" placeholder="请输入密码">
+					<input type="password" name="password" placeholder="请输入密码">
 				</li>
 				
 				<li> 
 					<i class="icon user-password"></i>
-					<input type="password" name="" placeholder="再次输入密码">
+					<input type="password" name="rpassword" placeholder="再次输入密码">
 				</li>
 			
 				<li> 
 					<i class="icon user-email"></i>
-					<input type="text" name="" placeholder="请输入邮箱">
+					<input type="text" name="email" placeholder="请输入邮箱">
 				</li>
 			</ul>
 		</div>
 		<div class="login-btn">
-			<a href="/enter"><p class="login">Finish</p></a>
+			<button class="login" type="submit">Finsh</button>
 		</div>
-	</div>
+	</form>
        
 	</div>
 </body>
