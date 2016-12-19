@@ -19,14 +19,14 @@ User.prototype.save = function save(callback) {
 		}
 
 		//获取users集合
-		db.collection('user',function (err,callection) {
+		db.collection('users',function (err,callection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
 			}
 
 			//为name属性添加索引
-			collection.ensureIndex('username',{unique:ture});
+			collection.ensureIndex('name',{unique:ture});
 
 
 			//SAVE
@@ -45,7 +45,7 @@ User.get = function get(username,callback) {
 		}
         
 
-        db.collection('user', function (err, collection) {
+        db.collection('users', function (err, collection) {
             if (err) {
                 mongodb.close();
                 return callback(err);

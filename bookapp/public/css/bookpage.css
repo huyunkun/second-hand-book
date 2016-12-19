@@ -1,0 +1,66 @@
+.bookpage-center {
+	background:url("/img/back.jpg"); 
+	background-repeat: no-repeat;
+	background-size: 1920px;
+	height: 1079px;
+}
+.bookpage-warp {
+	width: 1100px;
+	height: 800px;
+	background: #fff;
+	margin: 0 auto;
+	position: relative;
+	top: 140px;
+}
+.left {
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 500px;
+	height:500px;
+	float: left;
+}
+.left img {
+   width: 500px;
+	height:500px;
+}
+.left img:hover {
+    box-shadow: 2px 2px 2px #565656;;
+}
+.right {
+	margin-top: 130px;
+	float: left;
+	width: 400px;
+	height: 400px;
+	text-align: center;
+}
+.price {
+	font-size: 100px;
+
+}
+.goumai {
+	margin-top: 5px; 
+	color: #fff;
+	 font-size: 15px;
+}
+.buy {
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 100px;
+	border: none;
+    outline:medium;
+    width: 160px;
+    height: 30px;
+   
+    background-color: #262e38;
+   
+    border-radius: 10px;
+} 
+.buy:hover {
+    background: #293C4B;
+}
+.buttom-img {
+	width: 300px;
+	height: 300px;
+	float: right;
+	margin-top: -34px;
+}

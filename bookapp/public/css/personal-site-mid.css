@@ -78,14 +78,13 @@
 }
 .mid-tabs-bd {
 	height: 50px;
-	
-	border-top: 1px solid #000;
+	width: 75px;
 }
 .bd {
 	width: 122px;
 	height: 40px;
 	float: left;
-	margin-left: 20px;
+	margin-left:75px;
 	margin-top: 10px;
 	font-size: 15px;
 	color: #000;
@@ -105,7 +104,7 @@
 	color: #ccc;
 }
 .sum-1 {
-	width: 245px;
+	width: 75px;
 	height: 40px;
 }
 .add {
@@ -138,10 +137,6 @@
 	height: 300px;
 	float: right;
 	margin-top: 236px;
-}
-.sum-3 {
-	position: relative;
-	margin-top: 200px;
 }
 .data-btn {
     border: none;
@@ -218,4 +213,19 @@
 .form-btn {
 	margin-top: 18px;
 	margin-left: 160px;
+}
+.addsite {
+	float: left;	
+}
+.sum-1-name {
+	float: left;
+	font-size: 15px;
+	margin-left: 75px;
+}
+.sumtxt input {
+	font-size: 15px;
+	border: none;
+	outline:medium;
+	margin-left: 10px;
+	width: 92px;
 }

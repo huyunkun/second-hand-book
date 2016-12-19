@@ -17,16 +17,17 @@ var swig = require('swig');
 var multer = require('multer');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var setting = require('./setting');
+var MongoStore = require('connect-mongo')(session);
 
- app.use(cookieParser());//应用session
-
-    app.use(session({
-      secret :  'secret_meteoric',
-      cookie : {
-        maxAge : 60000 * 20 //20 minutes
-      },
-      //store : sessionStore
-    }));
+app.use(session({
+    secret: setting.cookieSecret,
+    ket: setting.db,//设置cookie name
+    cookie: {maxAge: 1000*60*60*30 },//设置过期时间为一个月
+    store: new MongoStore({
+        url: 'mongodb://localhost/words'
+    })
+}));
 
 // 加上 use(multer()) 
 app.use(bodyParser.urlencoded({ extended: true }));

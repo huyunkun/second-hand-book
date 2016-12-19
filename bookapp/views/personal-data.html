@@ -12,7 +12,7 @@
             <div class="one">
                 <div class="portrait">
                     <a href=""><img src="img/01.jpg"><br/></a>
-                    <span>earsuo</span>
+                    <span>{{ user }}</span>
                 </div>
                 <div class="mybook">
                     <span>我的书籍</span>
@@ -52,7 +52,8 @@
                                 </div>
                             </div>
                             <div class="sum-1-name sumtxt">
-                                    昵称<input type="text" name="nickname">
+                                    原昵称<input type="text" name="username">
+                                    新昵称<input type="text" name="newuesrname">
                                 </div>
                         </div>
                         <div class="sum-2">
@@ -79,12 +80,3 @@
     </div>
 {% endblock %}
 
-{% if user %}
-{% block planModal %}
-{% parent %}
-{% endblock %}
-{% endif %}
-
-{%block script%}
-{%parent%}
-{%endblock%}

@@ -6,12 +6,12 @@
 {%endblock%}
 
 {% block content %}
-<div class="personal-mid">
+<form class="personal-mid" method="post" enctype="multipart/form-data" action="/addsite">
         <div class="mid-main">
             <div class="one">
                 <div class="portrait">
                     <a href=""><img src="img/01.jpg"><br/></a>
-                    <span>earsuo</span>
+                    <span>{{user}}</span>
                 </div>
                 <div class="mybook">
                     <span>我的书籍</span>   
@@ -39,33 +39,43 @@
                 <div class="mid-tabs-bd">
                         <div class="sum-1">
                             <div class="add">
-                                <a href="/data-operate" class="xinzneg">新增收货人信息</a>
+                                <a href="javascript:addsite()" class="xinzneg">新增收货人信息</a>
                             </div>
-                        </div>
-                        <div class="sum-3">
-                            <div class="sum-3-1 sumjuli">
-                                <button class="data-btn">
-                                    保存基本信息
-                                </button>
-                            </div>
-                        </div>
+                        </div>     
+                </div>
+                    <div class="sum">
+                        <div class="sum-1 bd">姓名</div>
+                        <div class="sum-2 bd">地址</div>
+                        <div class="sum-3 bd">电话</div>
                     </div>
+                    <div class="addsite">
+                    </div>
+                    <div class="sum-1-name sumtxt">
+                姓名：<input type="text" name="sitename">
+                地址：<input type="text" name="siteaddress">
+                电话：<input type="text" name="phone">
             </div>
-            <div class="three">
-                <img src="img/right.png" class="buttom-img">
             </div>
-            </div>
+             
             
         </div>
+        </form>
     
 {% endblock %}
 
-{% if user %}
-{% block planModal %}
-{% parent %}
+{% block scripts%}
+  {%parent%}
+<script>
+function addsite() {
+   $.ajax({
+       url:"stash",
+       type:"POST", 
+       data:"",
+       dataType:"text"
+   }).done(function (data) {
+    console.log(data);
+       $(".addsite").append("<div class='sum'><div class='sum-1 bd'>  sitename  </div><div class='sum-2 bd'> siteaddress </div><div class='sum-3 bd'> phone </div></div>");
+   });
+}
+</script>
 {% endblock %}
-{% endif %}
-
-{%block script%}
-{%parent%}
-{%endblock%}

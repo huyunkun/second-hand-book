@@ -14,10 +14,10 @@
 				<p>易阁</p>
 			</a>
 			
-				{% if user %}
-                <a href="javascript:;"><p>欢迎{{ user.username }},个人中心</p></a>
+				{% if user %}	
+                	 <a href="/personal-data"><p>{{ user }}的个人中心</p></a>
                 {% else %}
-                <a href="/enter" class="J-trigger" id="personal"><p>登录</p></a>
+               		<a href="/enter" class="J-trigger" id="personal"><p>登录</p></a>
                 {% endif %}
 			
 		</div>
