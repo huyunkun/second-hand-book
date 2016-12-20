@@ -49,52 +49,19 @@ router.get('/personal-data',function (req,res,next) {
 
 router.get('/personal',function (req,res,next) {
     res.render('personal',{
-         user:req.session.username
+        order:req.session.order,
+        user:req.session.username
     });
 })
 
 router.get('/personal-site',function (req,res,next) {
 
      return res.render('personal-site',{
-        user:req.session.username,
-        sitename:req.session.sitename,
-        siteaddress:req.session.siteaddress,
-        phone:req.session.phone
+        user:req.session.username
         }); 
     })
     
 router.post('/addsite',function (req,res,next) {
-        // var site = new Site({
-        //     sitename:req.body.sitename,
-        //     siteaddress:req.body.siteaddress,
-        //     phone:req.body.phone
-        // }); 
-        // if (site.sitename == "" || site.siteaddress == ""|| 
-        //     site.phone == "") {
-        //     return res.redirect("/");
-        // } else {
-        //     site.save(function (err) {})
-    //         Site.find({'sitename':req.body.sitename},function (err,site) {
-    //             for (var i in site) {
-    //             if (req.body.sitename == site[i].sitename) {
-    //                 req.session.sitename = user[i].sitename;
-    //                  req.session.siteaddress = user[i].address;
-    //                   req.session.phone = user[i].phone;
-            
-    //             return res.redirect('/personal-site');
-    //         }
-    //     }
-
-    //     res.redirect('/enter');
-    // })
-        //   if (err) {
-        //             return res.wirte('error');
-        //         } else {
-        //             return res.redirect("/personal-site");
-        //         }
-        // }
-   
-        
      res.send();
 })
 
@@ -102,6 +69,7 @@ router.get('/bookpage',function (req,res,next) {
     res.render('bookpage',{
         user:req.session.username
     });
+    console.log(req.session.ordername);
 })
 
 
@@ -124,6 +92,8 @@ var SchemaP = mongoose.Schema({
     nickname:String,
     realname:String,
 
+}, {
+  versionKey: false
 });
 
 var SchemaU = mongoose.Schema({
@@ -131,26 +101,41 @@ var SchemaU = mongoose.Schema({
     password:String,
     rpassword:String,
     email:String
+}, {
+  versionKey: false
 });
 
 var SchemaS = mongoose.Schema({
     sitename:String,
     siteaddress:String,
     phone:String
+}, {
+  versionKey: false
 });
 
+var SchemaO = mongoose.Schema({
+    ordername:String,
+    orderprice:String,
+    ordertime:Date,
+    orderstate:String
+}, {
+  versionKey: false
+});
+
+var Order = mongoose.model('order',SchemaO);//订单信息
 var Book = mongoose.model('book',SchemaB);//书本信息
 var Name = mongoose.model('name',SchemaP);//个人姓名
 var User = mongoose.model('user',SchemaU);//用户
 var Site = mongoose.model('site',SchemaS);//地址信息
               
+//存入订单信息
+
+
 
 
 //用户注册
 
 router.post('/ulogin',function (req,res,next) {
-    
-
     console.log(req.body);
     if (req.body.password != req.body.rpassword){
         //两次密码输入不一致
@@ -200,29 +185,51 @@ router.post('/uenter',function (req,res,next) {
                 return res.redirect('/bookrack');
             }
         }
-
+        
         res.redirect('/enter');
     })
 });
+
+//添加订单
+router.post('/addorder',function (req,res,next) {
+
+    var orderdata = new Order ({
+        ordername:"01",
+        orderprice:"$35",
+        ordertime:Date.now(),
+        orderstate: "代发货"
+    }); 
+    orderdata.save(function (err) {
+        if (err) {
+                    return res.redirect('/enter');
+            } else {
+                    Order.find({'ordername':"01"},function (err,order) {
+                    req.session.order = order[3];
+                    // res.end(JSON.stringify(order[0]));
+                    res.redirect('/personal');
+                })
+            }
+    });
+
+});
+
 //修改个人信息
 router.post('/upload',function(req,res,next){
+        // console.log(req.body.nickname);
+        User.find({'username':req.body.nickname},function (err,user) {
+            for (var i in user) {
+                if (req.body.nickname == user[i].username) {
 
-        var name = new Name({
-            nickname: req.body.nickname,
+                    User.update({username:req.body.nickname},{username:req.body.newusername},function (err,user) {
+                      req.session.username = req.body.newusername;
 
-            realname: req.body.realname,
-        }); 
-        if (name.nickname == "" || name.realname == "") {
-            return res.redirect("/");
-        } else {
-            name.save(function (err) {
-                if (err) {
-                    return res.wirte('error');
+                        res.redirect('/personal-data');
+                    });
                 } else {
-                    return res.redirect("/personal-data");
+                    res.redirect('/enter');
                 }
-            })
-        }
+            }
+        });
 });
 
 
