@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
 var swig = require('swig');
+var moment = require('moment');
 
 /* GET home page. */
 router.get('/formdata',function (req,res,next) {
@@ -48,22 +49,30 @@ router.get('/personal-data',function (req,res,next) {
 })
 
 router.get('/personal',function (req,res,next) {
-    res.render('personal',{
-        order:req.session.order,
-        user:req.session.username
-    });
-})
+
+    Order.find({'ordername':"01"},function (err,order) {
+        order[0].ordertime = order[0].ordertime;
+            res.render('personal',{
+            order:order,
+            user:req.session.username
+        });
+    })
+   
+})  
 
 router.get('/personal-site',function (req,res,next) {
-
-     return res.render('personal-site',{
-        user:req.session.username
-        }); 
+     
+     Site.find({},function (err,site) {console.log(site);
+        res.render('personal-site',{
+          site:site,
+          user:req.session.username
+        });
+           });
+    
+     
     })
     
-router.post('/addsite',function (req,res,next) {
-     res.send();
-})
+
 
 router.get('/bookpage',function (req,res,next) {
     res.render('bookpage',{
@@ -79,6 +88,14 @@ var uri = 'mongodb://localhost/bookrack';
 var db = mongoose.connect(uri);
 var fs = require('fs');//node.js核心的文件处理模块
 var formidable = require('formidable');//文件上传插件
+
+var SchemaS = mongoose.Schema({
+    sitename:String,
+    siteaddress:String,
+    sitephone:String
+},{
+  versionKey: false
+});
 
 var SchemaB = mongoose.Schema({
     bookname : String,
@@ -105,18 +122,11 @@ var SchemaU = mongoose.Schema({
   versionKey: false
 });
 
-var SchemaS = mongoose.Schema({
-    sitename:String,
-    siteaddress:String,
-    phone:String
-}, {
-  versionKey: false
-});
 
 var SchemaO = mongoose.Schema({
     ordername:String,
     orderprice:String,
-    ordertime:Date,
+    ordertime:String,
     orderstate:String
 }, {
   versionKey: false
@@ -128,9 +138,6 @@ var Name = mongoose.model('name',SchemaP);//个人姓名
 var User = mongoose.model('user',SchemaU);//用户
 var Site = mongoose.model('site',SchemaS);//地址信息
               
-//存入订单信息
-
-
 
 
 //用户注册
@@ -196,18 +203,14 @@ router.post('/addorder',function (req,res,next) {
     var orderdata = new Order ({
         ordername:"01",
         orderprice:"$35",
-        ordertime:Date.now(),
+        ordertime:moment().format('MMM Do YY'),
         orderstate: "代发货"
     }); 
     orderdata.save(function (err) {
         if (err) {
                     return res.redirect('/enter');
             } else {
-                    Order.find({'ordername':"01"},function (err,order) {
-                    req.session.order = order[3];
-                    // res.end(JSON.stringify(order[0]));
                     res.redirect('/personal');
-                })
             }
     });
 
@@ -231,6 +234,24 @@ router.post('/upload',function(req,res,next){
             }
         });
 });
+
+//修改地址信息
+router.post('/addsite',function (req,res,next) {
+     console.log(req.body.sitename);
+     var sitedata = new Site ({
+         sitename:req.body.sitename,
+         siteaddress:req.body.siteaddress,
+         sitephone:req.body.sitephone
+     });
+     sitedata.save(function (err) {
+       if (err) {
+           res.redirect('/enter');
+       } else {
+           res.redirect('/personal-site');
+       }
+     });
+     
+})
 
 
 module.exports = router;

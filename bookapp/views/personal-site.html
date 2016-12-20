@@ -6,7 +6,7 @@
 {%endblock%}
 
 {% block content %}
-<form class="personal-mid" method="post" enctype="multipart/form-data" action="/addsite">
+<form class="personal-mid" method="post"  action="/addsite">
         <div class="mid-main">
             <div class="one">
                 <div class="portrait">
@@ -39,7 +39,7 @@
                 <div class="mid-tabs-bd">
                         <div class="sum-1">
                             <div class="add">
-                                <a href="javascript:addsite()" class="xinzneg">新增收货人信息</a>
+                                <button  class="xinzeng">新增收货人信息</button>
                             </div>
                         </div>     
                 </div>
@@ -47,13 +47,18 @@
                         <div class="sum-1 bd">姓名</div>
                         <div class="sum-2 bd">地址</div>
                         <div class="sum-3 bd">电话</div>
-                    </div>
+                    </div> 
+                    {% for item in site %}
                     <div class="addsite">
+                        <div class="sum-1 bd">{{item.sitename}}</div>
+                        <div class="sum-2 bd">{{item.siteaddress}}</div>
+                        <div class="sum-3 bd">{{item.sitephone}}</div>
                     </div>
+                    {% endfor %}
                     <div class="sum-1-name sumtxt">
                 姓名：<input type="text" name="sitename">
                 地址：<input type="text" name="siteaddress">
-                电话：<input type="text" name="phone">
+                电话：<input type="text" name="sitephone">
             </div>
             </div>
              
@@ -63,19 +68,4 @@
     
 {% endblock %}
 
-{% block scripts%}
-  {%parent%}
-<script>
-function addsite() {
-   $.ajax({
-       url:"stash",
-       type:"POST", 
-       data:"",
-       dataType:"text"
-   }).done(function (data) {
-    console.log(data);
-       $(".addsite").append("<div class='sum'><div class='sum-1 bd'>  hyk  </div><div class='sum-2 bd'> 西南民族大学 </div><div class='sum-3 bd'> 123456 </div></div>");
-   });
-}
-</script>
-{% endblock %}
+

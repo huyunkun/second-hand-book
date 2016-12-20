@@ -38,20 +38,17 @@
                         <div class="sum-4 bd">订单状态</div>
                     </div>
                 </div>
-                {% set item = [1]  %}
-                {% for indent in item%}
+                {% for indent in order%}
                 <div class="mid-tabs-bb">
                     <div class="sum">
-                        <div class="sum-1 bd">{{order.ordername}}</div>
-                        <div class="sum-2 bd">{{order.orderprice}}</div>
-                        <div class="sum-3 bd">{{order.ordertime}}</div>
-                        <div class="sum-4 bd">{{order.orderstate}}</div>
+                        <div class="sum-1 bd">{{indent.ordername}}</div>
+                        <div class="sum-2 bd">{{indent.orderprice}}</div>
+                        <div class="sum-3 bd">
+                        {{indent.ordertime}}</div>
+                        <div class="sum-4 bd">{{indent.orderstate}}</div>
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="three">
-                <img src="img/right.png" class="buttom-img">
             </div>
         </div>
     </div>
