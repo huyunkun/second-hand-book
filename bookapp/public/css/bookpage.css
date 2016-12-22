@@ -27,14 +27,16 @@
     box-shadow: 2px 2px 2px #565656;;
 }
 .right {
-	margin-top: 130px;
+	margin-top: 36px;
 	float: left;
 	width: 400px;
 	height: 400px;
 	text-align: center;
+	margin-left: 30px;
 }
 .price {
 	font-size: 27px;
+	text-align: left;
 }
 .bookname {
 	color: red;
@@ -48,10 +50,11 @@
     width: 160px;
     height: 30px;
    	color: #fff;
-	 font-size: 15px;
+	font-size: 15px;
     background-color: #262e38;
-   
     border-radius: 10px;
+    position: relative;
+    left: -113px;
 } 
 .buy:hover {
     background: #293C4B;
@@ -64,7 +67,6 @@
 }
 .amount {
 	width:160px;
-	margin-left: 114px;
 	margin-top: 20px;
 }
 .amount-txt {

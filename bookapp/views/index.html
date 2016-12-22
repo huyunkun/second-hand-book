@@ -6,8 +6,10 @@
 	<link rel="stylesheet"  href="../css/home_page.css">
 	<link rel="stylesheet"  href="../css/home_page_center.css">
 	<link rel="stylesheet"  href="../css/home_page_footer.css">
+
 </head>
 <body>
+
 	<div class="header">
 			<div class="back_warp">
 				<ul class="back">
@@ -56,48 +58,51 @@
     <div class="footer">
     	<div class="information">
     		<img src="/img/top-10.png">
-    		<ul class="top-ten">
-    			<li>
+            <div class="top-ten-warp">
+                <ul class="top-ten">
+                <li class="top-ten-li">
                     <span class="book-name">《盗墓笔记》</span>
                     <span class="writer">南派三叔</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《私募操盘》</span>
                     <span class="writer">连升</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《平凡的世界》</span>
                     <span class="writer">路遥</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《穆斯林的葬礼》</span>
                     <span class="writer">霍达</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《白夜行》</span>
                     <span class="writer">东野圭吾</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《同级生》</span>
                     <span class="writer">东野圭吾</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《挪威的森林》</span>
                     <span class="writer">村上春树</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《秒速五厘米》</span>
                     <span class="writer">'新海诚</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《教父》</span>
                     <span class="writer">马里奥·普佐</span>
                 </li>
-                <li>
+                <li class="top-ten-li">
                     <span class="book-name">《苏菲的世界》</span>
                     <span class="writer">乔斯坦·贾德</span>
                 </li>
-    		</ul>
+            </ul>
+            </div>
+    		
     	</div>
     	<div class="shop-information">
     	<img src="/img/information.png">
@@ -111,5 +116,17 @@
     <script type="text/javascript" src="../javascripts/lib/jquery.js"></script>
     
     <script type="text/javascript" src="../js/home_page.js"></script>
+    <script type="text/javascript" src="../js/scroll.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.top-ten-warp li:even').addClass('lieven');
+        })
+        $(function(){
+            $("div.top-ten-warp").myScroll({
+                speed:40, //数值越大，速度越慢
+                rowHeight:20 //li的高度
+            });
+        });
+    </script>
 </body>
 </html>

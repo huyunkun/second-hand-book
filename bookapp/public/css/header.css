@@ -57,8 +57,6 @@ body {
 }
 
 .btn-primary {
-	position: relative;
-	top: -2px;
 	text-align: center;
 	width: 44px;
 	height: 30px;

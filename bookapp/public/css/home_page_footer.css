@@ -15,18 +15,19 @@
 	font-family:" 华文行楷";
 	font-size: 20px;
 }
-.top-ten {
-	height:100px;
+.top-ten-warp {
+    height:100px;
 	overflow: hidden;
 	margin-top: 20px;
 }
+
 .top-ten li {
-	clear: both;
 	width: 350px;
 	height: 20px;
 }
 .writer {
 	float: right;
+
 }
 .shop-information {
 	margin-top: 40px;
