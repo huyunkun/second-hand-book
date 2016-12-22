@@ -34,13 +34,10 @@
 	text-align: center;
 }
 .price {
-	font-size: 100px;
-
+	font-size: 27px;
 }
-.goumai {
-	margin-top: 5px; 
-	color: #fff;
-	 font-size: 15px;
+.bookname {
+	color: red;
 }
 .buy {
 	text-decoration: none;
@@ -50,7 +47,8 @@
     outline:medium;
     width: 160px;
     height: 30px;
-   
+   	color: #fff;
+	 font-size: 15px;
     background-color: #262e38;
    
     border-radius: 10px;
@@ -63,4 +61,45 @@
 	height: 300px;
 	float: right;
 	margin-top: -34px;
+}
+.amount {
+	width:160px;
+	margin-left: 114px;
+	margin-top: 20px;
+}
+.amount-txt {
+	color: #838383;
+	font-size: 18px;
+	float: left;
+	margin-top: 14px;
+}
+.bookamount {
+	color: #838383;
+	width: 40px;
+	outline: none;
+	height: 50px;
+	text-align: center;
+}
+.btn-warp {
+	width: 14px;
+	height: 54px;
+	float: right;
+}
+.bookadd {
+	display: inline-block;
+    background-image: url("/img/icons.png");
+    height: 18px;
+    width: 14px;
+    background-position: 56px 22px;
+    border: 1px solid #a7a6ab;
+}
+.bookminus {
+	display: inline-block;
+    background-image: url("/img/icons.png");
+    height: 18px;
+    width: 14px;
+    background-position: 44px 26px;
+    float: left;
+    margin-top: 8px;
+    border: 1px solid #a7a6ab;
 }

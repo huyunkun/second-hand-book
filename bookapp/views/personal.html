@@ -33,22 +33,25 @@
                 <div class="mid-tabs-bd">
                     <div class="sum">
                         <div class="sum-1 bd">产品信息</div>
-                        <div class="sum-2 bd">价格</div>
-                        <div class="sum-3 bd">下单时间</div>
-                        <div class="sum-4 bd">订单状态</div>
+                        <div class="sum-2 bd">数量</div>
+                        <div class="sum-3 bd">价格</div>
+                        <div class="sum-4 bd">下单时间</div>
+                        <div class="sum-5 bd">订单状态</div>
                     </div>
                 </div>
-                {% for indent in order%}
-                <div class="mid-tabs-bb">
-                    <div class="sum">
-                        <div class="sum-1 bd">{{indent.ordername}}</div>
-                        <div class="sum-2 bd">{{indent.orderprice}}</div>
-                        <div class="sum-3 bd">
-                        {{indent.ordertime}}</div>
-                        <div class="sum-4 bd">{{indent.orderstate}}</div>
-                    </div>
-                </div>
-                {% endfor %}
+                    {% for indent in order%}
+                        <div class="mid-tabs-bb">
+                            <div class="sum">
+                                <div class="sum-1 bd">{{indent.ordername}}</div>
+                                 <div class="sum-2 bd">{{indent.orderamount}}</div>
+                                <div class="sum-3 bd">{{indent.orderprice}}</div>
+                                <div class="sum-4 bd">
+                                {{indent.ordertime}}</div>
+                                <div class="sum-5 bd">{{indent.orderstate}}</div>
+                            </div>
+                        </div>
+                   {% endfor %}
+               
             </div>
         </div>
     </div>

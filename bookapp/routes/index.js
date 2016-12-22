@@ -50,8 +50,8 @@ router.get('/personal-data',function (req,res,next) {
 
 router.get('/personal',function (req,res,next) {
 
-    Order.find({'ordername':"01"},function (err,order) {
-        order[0].ordertime = order[0].ordertime;
+    Order.find({},function (err,order,order_two,order_three) {
+            console.log(order);
             res.render('personal',{
             order:order,
             user:req.session.username
@@ -62,7 +62,7 @@ router.get('/personal',function (req,res,next) {
 
 router.get('/personal-site',function (req,res,next) {
      
-     Site.find({},function (err,site) {console.log(site);
+     Site.find({},function (err,site) {
         res.render('personal-site',{
           site:site,
           user:req.session.username
@@ -78,9 +78,19 @@ router.get('/bookpage',function (req,res,next) {
     res.render('bookpage',{
         user:req.session.username
     });
-    console.log(req.session.ordername);
 })
 
+router.get('/bookpage-two',function (req,res,next) {
+    res.render('bookpage-two',{
+        user:req.session.username
+    });
+})
+
+router.get('/bookpage-three',function (req,res,next) {
+    res.render('bookpage-three',{
+        user:req.session.username
+    });
+})
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;  
@@ -92,15 +102,14 @@ var formidable = require('formidable');//文件上传插件
 var SchemaS = mongoose.Schema({
     sitename:String,
     siteaddress:String,
-    sitephone:String
+    phone:String
 },{
   versionKey: false
 });
 
 var SchemaB = mongoose.Schema({
     bookname : String,
-    write:String,
-    price:String
+    write:String
 }, {
   versionKey: false
 });
@@ -127,10 +136,12 @@ var SchemaO = mongoose.Schema({
     ordername:String,
     orderprice:String,
     ordertime:String,
-    orderstate:String
+    orderstate:String,
+    orderamount:String
 }, {
   versionKey: false
 });
+
 
 var Order = mongoose.model('order',SchemaO);//订单信息
 var Book = mongoose.model('book',SchemaB);//书本信息
@@ -138,7 +149,11 @@ var Name = mongoose.model('name',SchemaP);//个人姓名
 var User = mongoose.model('user',SchemaU);//用户
 var Site = mongoose.model('site',SchemaS);//地址信息
               
-
+// var book = new Book({
+//     bookname:"时生",
+//     write:"东野圭吾"
+// });
+// book.save(function (err) {});
 
 //用户注册
 
@@ -201,12 +216,51 @@ router.post('/uenter',function (req,res,next) {
 router.post('/addorder',function (req,res,next) {
 
     var orderdata = new Order ({
-        ordername:"01",
-        orderprice:"$35",
+        ordername:"时生",
+        orderprice:"$34",
         ordertime:moment().format('MMM Do YY'),
-        orderstate: "代发货"
+        orderstate: "代发货",
+        orderamount:req.body.bookamount
     }); 
     orderdata.save(function (err) {
+        if (err) {
+                    return res.redirect('/enter');
+            } else {
+                    res.redirect('/personal');
+            }
+    });
+
+});
+
+router.post('/addorder-three',function (req,res,next) {
+
+    var orderdata_three = new Order ({
+        ordername:"幻夜",
+        orderprice:"$30",
+        ordertime:moment().format('MMM Do YY'),
+        orderstate: "代发货",
+        orderamount:req.body.bookamount
+    }); 
+    orderdata_three.save(function (err) {
+        if (err) {
+                    return res.redirect('/enter');
+            } else {
+                    res.redirect('/personal');
+            }
+    });
+
+});
+
+router.post('/addorder-two',function (req,res,next) {
+
+    var orderdata_two = new Order ({
+        ordername:"漫长的中场休息",
+        orderprice:"$27",
+        ordertime:moment().format('MMM Do YY'),
+        orderstate: "代发货",
+        orderamount:req.body.bookamount
+    }); 
+    orderdata_two.save(function (err) {
         if (err) {
                     return res.redirect('/enter');
             } else {
@@ -237,11 +291,11 @@ router.post('/upload',function(req,res,next){
 
 //修改地址信息
 router.post('/addsite',function (req,res,next) {
-     console.log(req.body.sitename);
+     console.log(req.body.sitephone);
      var sitedata = new Site ({
          sitename:req.body.sitename,
          siteaddress:req.body.siteaddress,
-         sitephone:req.body.sitephone
+         phone:req.body.phone
      });
      sitedata.save(function (err) {
        if (err) {
@@ -252,6 +306,18 @@ router.post('/addsite',function (req,res,next) {
      });
      
 })
+
+//搜索书籍
+router.post('/search',function (req,res,next) {
+
+    if (req.body.bookname == "时生") {
+        res.redirect('/bookpage');
+    } else if (req.body.bookname == "幻夜") {
+        res.redirect('/bookpage-three');
+    } else if (req.body.bookname == "漫长的中场休息") {
+        res.redirect('/bookpage-two');
+    }
+});
 
 
 module.exports = router;

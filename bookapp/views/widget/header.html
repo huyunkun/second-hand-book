@@ -13,12 +13,19 @@
 				<span>Cobinet</span><br/>
 				<p>易阁</p>
 			</a>
-			
-				{% if user %}	
-                	 <a href="/personal-data"><p>{{ user }}的个人中心</p></a>
+			<form class="input-group" method="post" action="/search">
+			    <input type="text" class="form-control input-lg" name="bookname">
+			    <button  class="input-group-addon btn btn-primary">搜索</button> 
+
+			    {% if user %}	
+                	 <a href="/personal-data" id="personal"><p>{{ user }}的个人中心</p></a>
                 {% else %}
                		<a href="/enter" class="J-trigger" id="personal"><p>登录</p></a>
                 {% endif %}
+
+			</form>
+			
+				
 			
 		</div>
 	</div>
