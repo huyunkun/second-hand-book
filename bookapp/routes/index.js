@@ -3,6 +3,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var swig = require('swig');
 var moment = require('moment');
+var formidable = require('formidable');
 
 /* GET home page. */
 router.get('/formdata',function (req,res,next) {
@@ -142,13 +143,18 @@ var SchemaO = mongoose.Schema({
   versionKey: false
 });
 
+var SchemaF = mongoose.Schema({
+    file_name:String,
+    file_path:String
+});
+
 
 var Order = mongoose.model('order',SchemaO);//订单信息
 var Book = mongoose.model('book',SchemaB);//书本信息
 var Name = mongoose.model('name',SchemaP);//个人姓名
 var User = mongoose.model('user',SchemaU);//用户
 var Site = mongoose.model('site',SchemaS);//地址信息
-              
+var File = mongoose.model('file',SchemaF);//头像上传            
 // var book = new Book({
 //     bookname:"时生",
 //     write:"东野圭吾"
@@ -272,7 +278,38 @@ router.post('/addorder-two',function (req,res,next) {
 
 //修改个人信息
 router.post('/upload',function(req,res,next){
-        // console.log(req.body.nickname);
+
+    var message = '';
+    var form = new formidable.IncomingForm();   //创建上传表单
+    form.encoding = 'utf-8';        //设置编辑
+    form.uploadDir = 'public/uploads';     //设置上传目录
+    form.keepExtensions = true;     //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+     
+    form.parse(req,function (err,fields,files) {
+        console.log(files.upload.data_img);
+        var filename = files.upload.data_img;
+        var filepath = files.upload.path;
+
+        var img = new File({
+            file_name:filename,
+            file_path:filepath
+        });
+        if(file.file_name == ""
+            ||file.file_path == "") {
+            return res.redirect('/personal-data');
+        } else {
+            img.save(function (err) {
+                if (err) {
+                    return res.redirect('/enter');
+                } else {
+                    return res.redirect('/personal-data');
+                }
+            });
+        }
+    });   
+
+
         User.find({'username':req.body.nickname},function (err,user) {
             for (var i in user) {
                 if (req.body.nickname == user[i].username) {

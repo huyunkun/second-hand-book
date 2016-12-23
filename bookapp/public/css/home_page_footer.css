@@ -20,7 +20,10 @@
 	overflow: hidden;
 	margin-top: 20px;
 }
-
+.top-ten {
+	width: 350px;
+	height: 200px;
+}
 .top-ten li {
 	width: 350px;
 	height: 20px;

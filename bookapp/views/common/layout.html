@@ -7,19 +7,7 @@
 	<link rel="stylesheet" href="/css/header.css">
 	<link rel="stylesheet" href="/css/footer.css">
 	{% endblock %}
-	{% block scripts %}
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.top-ten-warp li:even').addClass('lieven');
-		})
-		$(function(){
-			$("div.top-ten-warp").myScroll({
-				speed:40, //数值越大，速度越慢
-				rowHeight:68 //li的高度
-			});
-		});
-	</script>
-	{% endblock %}
+	
 </head>
 <body>
 {% block header%}
@@ -34,7 +22,23 @@
 
 {% block scripts %}
 <script src="/javascripts/lib/jquery.js"></script>
+<script type="text/javascript" src="/js/scroll.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
 
+			$('.top-ten-warp li:even').addClass('lieven');
+		})
+
+		$(function(){
+
+			$("div.top-ten-warp").myScroll({
+				
+				speed:40, //数值越大，速度越慢
+				rowHeight:20 //li的高度
+			});
+		});
+	</script>
+	
 {% endblock %}
 </body>
 </html>
