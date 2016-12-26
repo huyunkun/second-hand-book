@@ -218,6 +218,13 @@ router.post('/uenter',function (req,res,next) {
     })
 });
 
+//用户注销
+router.post('/out',function (req,res,next) {
+    req.session.username = null;
+    req.session.password = null;
+    res.redirect('/bookrack');
+});
+
 //添加订单
 router.post('/addorder',function (req,res,next) {
 
@@ -277,38 +284,7 @@ router.post('/addorder-two',function (req,res,next) {
 });
 
 //修改个人信息
-router.post('/upload',function(req,res,next){
-
-    var message = '';
-    var form = new formidable.IncomingForm();   //创建上传表单
-    form.encoding = 'utf-8';        //设置编辑
-    form.uploadDir = 'public/uploads';     //设置上传目录
-    form.keepExtensions = true;     //保留后缀
-    form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-     
-    form.parse(req,function (err,fields,files) {
-        console.log(files.upload.data_img);
-        var filename = files.upload.data_img;
-        var filepath = files.upload.path;
-
-        var img = new File({
-            file_name:filename,
-            file_path:filepath
-        });
-        if(file.file_name == ""
-            ||file.file_path == "") {
-            return res.redirect('/personal-data');
-        } else {
-            img.save(function (err) {
-                if (err) {
-                    return res.redirect('/enter');
-                } else {
-                    return res.redirect('/personal-data');
-                }
-            });
-        }
-    });   
-
+router.post('/upload',function(req,res,next){  
 
         User.find({'username':req.body.nickname},function (err,user) {
             for (var i in user) {
@@ -355,6 +331,7 @@ router.post('/search',function (req,res,next) {
         res.redirect('/bookpage-two');
     }
 });
+
 
 
 module.exports = router;

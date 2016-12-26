@@ -39,7 +39,7 @@
                 <div class="mid-tabs-bd">
                         <div class="sum-1">
                             <div class="add">
-                                <button  class="xinzeng">新增收货人信息</button>
+                                <input type="button" name="" class="xinzeng" onclick="ShowDiv('popup','fade')" value="新增收货人信息">  
                             </div>
                         </div>     
                 </div>
@@ -55,17 +55,40 @@
                         <div class="sum-3 bd">{{item.phone}}</div>
                     </div>
                     {% endfor %}
-                    <div class="sum-1-name sumtxt">
-                姓名：<input type="text" name="sitename">
-                地址：<input type="text" name="siteaddress">
-                电话：<input type="text" name="phone">
-            </div>
-            </div>
-             
-            
         </div>
-        </form>
-    
+   </div>
+        <div id="fade" class="black_overlay" style="display:none"></div>
+        <div class="popup" id="popup" style="display:none">
+        <a class="close" style="font-size: 16px;" onclick="CloseDiv('popup','fade')">关闭</a>
+            <ul class="site-warp">
+                <li class="site">姓名：<input type="text" name="sitename"></li>
+                <li class="site">地址：<input type="text" name="siteaddress"></li>
+                <li class="site">电话：<input type="text" name="phone"></li>
+            </ul>
+            
+            <button  class="xinzeng site-btn" >保存收货人信息</button>
+       </div>
+   
+</form>
+
 {% endblock %}
 
-
+{% block scripts %}
+{%parent%}
+   <script type="text/javascript">
+      //弹出隐藏层
+        function ShowDiv(show_div,bg_div){
+            document.getElementById(show_div).style.display='block';
+            document.getElementById(bg_div).style.display='block' ;
+            var bgdiv = document.getElementById(bg_div);
+            bgdiv.style.width = document.body.scrollWidth;
+            // bgdiv.style.height = $(document).height();
+            $("#"+bg_div).height($(document).height());
+        };
+        //关闭弹出层
+        function CloseDiv(show_div,bg_div) {
+            document.getElementById(show_div).style.display='none';
+            document.getElementById(bg_div).style.display='none';
+        };
+   </script>
+{% endblock %}

@@ -217,15 +217,48 @@
 .addsite {
 	float: left;	
 }
-.sum-1-name {
-	float: left;
-	font-size: 15px;
-	margin-left: 75px;
+.popup {
+	z-index: 1001;
+	position: absolute;
+	top: 420px;
+	left: 450px;
+	width: 400px;
+	height: 300px;
+	background: #fff;
 }
-.sumtxt input {
+.site-warp {
+   padding-top: 47px;
+   padding-left: 69px;
+}
+.site {
+	list-style: none;
+	padding-top: 10px;
+}
+.site input{
 	font-size: 15px;
-	border: none;
 	outline:medium;
-	margin-left: 10px;
-	width: 92px;
+	outline: none;
+}
+
+.site-btn {
+	margin-top: 53px;
+	margin-left: 132px;
+}
+.black_overlay{
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 1528px;
+background-color: black;
+z-index:1000;
+-moz-opacity: 0.8;
+opacity:.80;
+filter: alpha(opacity=80);
+}
+.close {
+   position: relative;
+   top: 10px;
+   left: 346px;
+   display: inline-block;
 }
