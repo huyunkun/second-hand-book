@@ -51,7 +51,7 @@ router.get('/personal-data',function (req,res,next) {
 
 router.get('/personal',function (req,res,next) {
 
-    Order.find({},function (err,order,order_two,order_three) {
+    Order.find({},function (err,order) {
             console.log(order);
             res.render('personal',{
             order:order,

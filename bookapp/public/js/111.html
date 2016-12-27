@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a=2;
+		var func=(function(){
+		    var a = 2;
+		    return function(){
+		       a++;
+		       console.log(a);
+		    }
+		})();
+
+		func();
+		func();
+	</script>
+</body>
+</html>
