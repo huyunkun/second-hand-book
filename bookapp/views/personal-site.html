@@ -49,11 +49,13 @@
                         <div class="sum-3 bd">电话</div>
                     </div> 
                     {% for item in site %}
-                    <div class="addsite">
-                        <div class="sum-1 bd">{{item.sitename}}</div>
-                        <div class="sum-2 bd">{{item.siteaddress}}</div>
-                        <div class="sum-3 bd">{{item.phone}}</div>
-                    </div>
+                        {% if userId == item.siteid %}
+                            <div class="addsite">
+                                <div class="sum-1 bd">{{item.sitename}}</div>
+                                <div class="sum-2 bd">{{item.siteaddress}}</div>
+                                <div class="sum-3 bd">{{item.phone}}</div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
         </div>
    </div>

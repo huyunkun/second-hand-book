@@ -15,9 +15,6 @@ router.post('/stash',function (req,res,next) {
 })
 
 
-
-
-
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 })
@@ -26,7 +23,40 @@ router.get('/enter',function (req,res,next) {
 })
     
 router.get('/bookrack',function (req,res,next) {
+    
+   var os = require('os');
+var ifaces = os.networkInterfaces();
 
+
+
+
+
+    getIp();//获取真实ip地址
+    var ip = getIp();
+    console.log('ceshi'+ip);
+    debugger;
+
+
+function getIp(){
+     var ipAddress;
+    Object.keys(ifaces).forEach(function (ifname) {
+        var alias = 0;
+        ifaces[ifname].forEach(function (iface) {
+            if ('IPv4' !== iface.family || iface.internal !== false) {
+                return;
+            }
+            if (alias >= 1) {//查询真实IP地址
+                console.log(ifname + ':' + alias, iface.address);
+            } else {
+                console.log(ifname, iface.address);
+            }
+            ipAddress = iface.address;
+            ++alias;
+        });
+    });
+    return ipAddress;
+}
+    
 	console.log(req.session.user); 
     res.render('bookrack',{ 
      user:req.session.username
@@ -55,7 +85,8 @@ router.get('/personal',function (req,res,next) {
             console.log(order);
             res.render('personal',{
             order:order,
-            user:req.session.username
+            user:req.session.username,
+            userId:req.session.userid
         });
     })
    
@@ -66,7 +97,8 @@ router.get('/personal-site',function (req,res,next) {
      Site.find({},function (err,site) {
         res.render('personal-site',{
           site:site,
-          user:req.session.username
+          user:req.session.username,
+          userId:req.session.userid
         });
            });
     
@@ -101,6 +133,7 @@ var fs = require('fs');//node.js核心的文件处理模块
 var formidable = require('formidable');//文件上传插件
 
 var SchemaS = mongoose.Schema({
+    siteid:String,
     sitename:String,
     siteaddress:String,
     phone:String
@@ -124,6 +157,7 @@ var SchemaP = mongoose.Schema({
 });
 
 var SchemaU = mongoose.Schema({
+    userid:String,
     username:String,
     password:String,
     rpassword:String,
@@ -134,6 +168,7 @@ var SchemaU = mongoose.Schema({
 
 
 var SchemaO = mongoose.Schema({
+    orderid:String,
     ordername:String,
     orderprice:String,
     ordertime:String,
@@ -177,6 +212,7 @@ router.post('/ulogin',function (req,res,next) {
     var password = md5.update(req.body.password).digest('base64');
    
     var newuser = new User({
+            userid:req.body.username + "1",
             username:req.body.username,
             password:password,
             rpassword:rpassword,
@@ -208,7 +244,7 @@ router.post('/uenter',function (req,res,next) {
             if (req.body.username == user[i].username
                 &&password == user[i].password) {
                 req.session.username = user[i].username;
-                
+                req.session.userid = user[i].userid;
                 
                 return res.redirect('/bookrack');
             }
@@ -227,14 +263,16 @@ router.post('/out',function (req,res,next) {
 
 //添加订单
 router.post('/addorder',function (req,res,next) {
-
+    console.log(req.session.userid);
     var orderdata = new Order ({
+        orderid:req.session.userid,
         ordername:"时生",
         orderprice:"$34",
         ordertime:moment().format('MMM Do YY'),
         orderstate: "代发货",
         orderamount:req.body.bookamount
     }); 
+
     orderdata.save(function (err) {
         if (err) {
                     return res.redirect('/enter');
@@ -248,6 +286,7 @@ router.post('/addorder',function (req,res,next) {
 router.post('/addorder-three',function (req,res,next) {
 
     var orderdata_three = new Order ({
+        orderid:req.session.userid,
         ordername:"幻夜",
         orderprice:"$30",
         ordertime:moment().format('MMM Do YY'),
@@ -262,17 +301,19 @@ router.post('/addorder-three',function (req,res,next) {
             }
     });
 
+
 });
 
 router.post('/addorder-two',function (req,res,next) {
-
     var orderdata_two = new Order ({
+        orderid:req.session.userid,
         ordername:"漫长的中场休息",
         orderprice:"$27",
         ordertime:moment().format('MMM Do YY'),
         orderstate: "代发货",
         orderamount:req.body.bookamount
     }); 
+
     orderdata_two.save(function (err) {
         if (err) {
                     return res.redirect('/enter');
@@ -304,8 +345,9 @@ router.post('/upload',function(req,res,next){
 
 //修改地址信息
 router.post('/addsite',function (req,res,next) {
-     console.log(req.body.sitephone);
+     
      var sitedata = new Site ({
+         siteid:req.session.userid,
          sitename:req.body.sitename,
          siteaddress:req.body.siteaddress,
          phone:req.body.phone

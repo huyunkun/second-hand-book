@@ -40,16 +40,18 @@
                     </div>
                 </div>
                     {% for indent in order%}
-                        <div class="mid-tabs-bb">
-                            <div class="sum">
-                                <div class="sum-1 bd">{{indent.ordername}}</div>
-                                 <div class="sum-2 bd">{{indent.orderamount}}</div>
-                                <div class="sum-3 bd">{{indent.orderprice}}</div>
-                                <div class="sum-4 bd">
-                                {{indent.ordertime}}</div>
-                                <div class="sum-5 bd">{{indent.orderstate}}</div>
+                        {% if userId == indent.orderid %}
+                            <div class="mid-tabs-bb">
+                                <div class="sum">
+                                    <div class="sum-1 bd">{{indent.ordername}}</div>
+                                     <div class="sum-2 bd">{{indent.orderamount}}</div>
+                                    <div class="sum-3 bd">{{indent.orderprice}}</div>
+                                    <div class="sum-4 bd">
+                                    {{indent.ordertime}}</div>
+                                    <div class="sum-5 bd">{{indent.orderstate}}</div>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                    {% endfor %}
                
             </div>
