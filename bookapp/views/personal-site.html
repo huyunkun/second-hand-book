@@ -6,7 +6,7 @@
 {%endblock%}
 
 {% block content %}
-<form class="personal-mid" method="post"  action="/addsite">
+<form class="personal-mid" method="post"  action="" name="site">
         <div class="mid-main">
             <div class="one">
                 <div class="portrait">
@@ -51,9 +51,10 @@
                     {% for item in site %}
                         {% if userId == item.siteid %}
                             <div class="addsite">
-                                <div class="sum-1 bd">{{item.sitename}}</div>
+                                <div class="sum-1 bd" name="{{item.sitename}}">{{item.sitename}}</div>
                                 <div class="sum-2 bd">{{item.siteaddress}}</div>
                                 <div class="sum-3 bd">{{item.phone}}</div>
+                                <input type="button" value="删除" class="sum-4" id="delete" onclick="Delete()">
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -68,7 +69,7 @@
                 <li class="site">电话：<input type="text" name="phone"></li>
             </ul>
             
-            <button  class="xinzeng site-btn" >保存收货人信息</button>
+            <input type="button" value="保存收货人信息" class="xinzeng site-btn" name="baocun" onclick="Baocun()">
        </div>
    
 </form>
@@ -92,5 +93,26 @@
             document.getElementById(show_div).style.display='none';
             document.getElementById(bg_div).style.display='none';
         };
+
+        function Baocun() {
+            document.site.action = "/addsite";
+            document.site.submit();
+        }
+
+        function Delete() {
+            $(".addsite").click(function () {
+                var data = $(this).children().attr("name");
+                console.log(data);
+                
+              $.ajax({
+                    type:"post",
+                    url:"/delete",
+                    data:{data:data}
+                });
+            });
+              
+            document.site.action = "/delete";
+            document.site.submit();
+        }
    </script>
 {% endblock %}

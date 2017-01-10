@@ -347,11 +347,14 @@ router.post('/upload',function(req,res,next){
 router.post('/addsite',function (req,res,next) {
      
      var sitedata = new Site ({
+         _id:sitedata._id.toString(),
          siteid:req.session.userid,
          sitename:req.body.sitename,
          siteaddress:req.body.siteaddress,
          phone:req.body.phone
      });
+     console.log(site._id.toString());
+     console.log(sitedata._id.toString());
      sitedata.save(function (err) {
        if (err) {
            res.redirect('/enter');
@@ -361,6 +364,18 @@ router.post('/addsite',function (req,res,next) {
      });
      
 })
+//删除地址信息
+router.post('/delete',function (req,res,next) {
+     
+     Site.remove({"sitename":req.body.data},function(err) {
+          if (err) {
+               res.redirect('/enter');
+            } else {
+               res.redirect('/personal-site');
+            }
+     });
+
+});
 
 //搜索书籍
 router.post('/search',function (req,res,next) {
