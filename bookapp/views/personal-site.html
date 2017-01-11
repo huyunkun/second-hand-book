@@ -51,7 +51,7 @@
                     {% for item in site %}
                         {% if userId == item.siteid %}
                             <div class="addsite">
-                                <div class="sum-1 bd" name="{{item.sitename}}">{{item.sitename}}</div>
+                                <div class="sum-1 bd" data-id="{{item.id}}">{{item.sitename}}</div>
                                 <div class="sum-2 bd">{{item.siteaddress}}</div>
                                 <div class="sum-3 bd">{{item.phone}}</div>
                                 <input type="button" value="删除" class="sum-4" id="delete" onclick="Delete()">
@@ -78,41 +78,5 @@
 
 {% block scripts %}
 {%parent%}
-   <script type="text/javascript">
-      //弹出隐藏层
-        function ShowDiv(show_div,bg_div){
-            document.getElementById(show_div).style.display='block';
-            document.getElementById(bg_div).style.display='block' ;
-            var bgdiv = document.getElementById(bg_div);
-            bgdiv.style.width = document.body.scrollWidth;
-            // bgdiv.style.height = $(document).height();
-            $("#"+bg_div).height($(document).height());
-        };
-        //关闭弹出层
-        function CloseDiv(show_div,bg_div) {
-            document.getElementById(show_div).style.display='none';
-            document.getElementById(bg_div).style.display='none';
-        };
-
-        function Baocun() {
-            document.site.action = "/addsite";
-            document.site.submit();
-        }
-
-        function Delete() {
-            $(".addsite").click(function () {
-                var data = $(this).children().attr("name");
-                console.log(data);
-                
-              $.ajax({
-                    type:"post",
-                    url:"/delete",
-                    data:{data:data}
-                });
-            });
-              
-            document.site.action = "/delete";
-            document.site.submit();
-        }
-   </script>
+   <script type="text/javascript" src="../js/person_site.js"></script>
 {% endblock %}

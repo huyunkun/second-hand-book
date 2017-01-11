@@ -82,13 +82,12 @@ router.get('/personal-data',function (req,res,next) {
 router.get('/personal',function (req,res,next) {
 
     Order.find({},function (err,order) {
-            console.log(order);
             res.render('personal',{
             order:order,
             user:req.session.username,
             userId:req.session.userid
         });
-    })
+    });
    
 })  
 
@@ -133,6 +132,7 @@ var fs = require('fs');//node.js核心的文件处理模块
 var formidable = require('formidable');//文件上传插件
 
 var SchemaS = mongoose.Schema({
+    id:String,
     siteid:String,
     sitename:String,
     siteaddress:String,
@@ -168,6 +168,7 @@ var SchemaU = mongoose.Schema({
 
 
 var SchemaO = mongoose.Schema({
+    id:String,
     orderid:String,
     ordername:String,
     orderprice:String,
@@ -199,7 +200,6 @@ var File = mongoose.model('file',SchemaF);//头像上传
 //用户注册
 
 router.post('/ulogin',function (req,res,next) {
-    console.log(req.body);
     if (req.body.password != req.body.rpassword){
         //两次密码输入不一致
         return res.redirect('/');
@@ -263,8 +263,9 @@ router.post('/out',function (req,res,next) {
 
 //添加订单
 router.post('/addorder',function (req,res,next) {
-    console.log(req.session.userid);
+    
     var orderdata = new Order ({
+        id:111,
         orderid:req.session.userid,
         ordername:"时生",
         orderprice:"$34",
@@ -277,7 +278,10 @@ router.post('/addorder',function (req,res,next) {
         if (err) {
                     return res.redirect('/enter');
             } else {
-                    res.redirect('/personal');
+                var id = orderdata._id.toString();
+                console.log(id);
+                Order.update({_id:orderdata._id},{id:id},function (err,order) {});
+                res.redirect('/personal');
             }
     });
 
@@ -286,6 +290,7 @@ router.post('/addorder',function (req,res,next) {
 router.post('/addorder-three',function (req,res,next) {
 
     var orderdata_three = new Order ({
+        id:111,
         orderid:req.session.userid,
         ordername:"幻夜",
         orderprice:"$30",
@@ -297,7 +302,9 @@ router.post('/addorder-three',function (req,res,next) {
         if (err) {
                     return res.redirect('/enter');
             } else {
-                    res.redirect('/personal');
+                var id = orderdata_three._id.toString();
+                Order.update({_id:orderdata_three._id},{id:id},function (err,order) {});
+                res.redirect('/personal');
             }
     });
 
@@ -306,6 +313,7 @@ router.post('/addorder-three',function (req,res,next) {
 
 router.post('/addorder-two',function (req,res,next) {
     var orderdata_two = new Order ({
+        id:111,
         orderid:req.session.userid,
         ordername:"漫长的中场休息",
         orderprice:"$27",
@@ -318,12 +326,24 @@ router.post('/addorder-two',function (req,res,next) {
         if (err) {
                     return res.redirect('/enter');
             } else {
-                    res.redirect('/personal');
+                var id = orderdata_two._id.toString();
+                Order.update({_id:orderdata_two._id},{id:id},function (err,order) {});
+                res.redirect('/personal');
             }
     });
 
 });
-
+//删除订单
+router.post('/Ordelete',function (req,res,next) {
+    
+    Order.remove({id:req.body.data},function(err) {
+          if (err) {
+             res.redirect("/enter");
+          } else {
+             res.redirect('/personal');
+          }
+     });
+});
 //修改个人信息
 router.post('/upload',function(req,res,next){  
 
@@ -345,29 +365,31 @@ router.post('/upload',function(req,res,next){
 
 //修改地址信息
 router.post('/addsite',function (req,res,next) {
-     
      var sitedata = new Site ({
-         _id:sitedata._id.toString(),
+         id:1111,
          siteid:req.session.userid,
          sitename:req.body.sitename,
          siteaddress:req.body.siteaddress,
          phone:req.body.phone
      });
-     console.log(site._id.toString());
-     console.log(sitedata._id.toString());
+     
      sitedata.save(function (err) {
        if (err) {
            res.redirect('/enter');
        } else {
-           res.redirect('/personal-site');
-       }
+            var id = sitedata._id.toString();
+            Site.update({_id:sitedata._id},{id:id},function (err,site) {});
+
+               res.redirect('/personal-site');
+
+           }
      });
      
 })
 //删除地址信息
 router.post('/delete',function (req,res,next) {
      
-     Site.remove({"sitename":req.body.data},function(err) {
+     Site.remove({id:req.body.data},function(err) {
           if (err) {
                res.redirect('/enter');
             } else {

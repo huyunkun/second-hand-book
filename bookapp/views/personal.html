@@ -6,7 +6,7 @@
 {%endblock%}
 
 {% block content %}
-<div class="personal-mid">
+<form class="personal-mid" method="post" action="/Ordelete">
         <div class="mid-main">
             <div class="one">
                 <div class="portrait">
@@ -42,13 +42,14 @@
                     {% for indent in order%}
                         {% if userId == indent.orderid %}
                             <div class="mid-tabs-bb">
-                                <div class="sum">
+                                <div class="sum" data-id="{{indent.id}}">
                                     <div class="sum-1 bd">{{indent.ordername}}</div>
                                      <div class="sum-2 bd">{{indent.orderamount}}</div>
                                     <div class="sum-3 bd">{{indent.orderprice}}</div>
                                     <div class="sum-4 bd">
                                     {{indent.ordertime}}</div>
                                     <div class="sum-5 bd">{{indent.orderstate}}</div>
+                                    <input type="button" name="" value="删除" class="sum-6" id="delete" onclick="Ordelete()">
                                 </div>
                             </div>
                         {% endif %}
@@ -56,5 +57,10 @@
                
             </div>
         </div>
-    </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+{%parent%}
+   <script type="text/javascript" src="../js/person.js"></script>
 {% endblock %}
