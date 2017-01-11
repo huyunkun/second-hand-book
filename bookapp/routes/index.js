@@ -334,7 +334,7 @@ router.post('/addorder-two',function (req,res,next) {
 
 });
 //删除订单
-router.post('/Ordelete',function (req,res,next) {
+router.post('/ordelete',function (req,res,next) {
     
     Order.remove({id:req.body.data},function(err) {
           if (err) {

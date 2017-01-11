@@ -20,16 +20,20 @@
 
         function Delete() {
             $(".addsite").click(function () {
+                $(this).addClass('Site');
                 var data = $(this).children().attr("data-id");
-                console.log(data);
+                
                 
               $.ajax({
                     type:"post",
                     url:"/delete",
-                    data:{data:data}
+                    data:{data:data},
+                    success:function (data) {
+                        $('.Site').remove();
+                    }
                 });
             });
               
             document.site.action = "/delete";
-            document.site.submit();
+            // document.site.submit();
         }
