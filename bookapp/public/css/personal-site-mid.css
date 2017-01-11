@@ -74,7 +74,6 @@
 	text-align: center;
 	width: 160px;
 	height: 37px;
-	border-bottom: 3px solid #000;
 }
 .mid-tabs-bd {
 	height: 50px;
@@ -218,7 +217,7 @@
 	margin-left: 160px;
 }
 .addsite {
-	float: left;	
+	float: left;
 }
 .popup {
 	z-index: 1001;
@@ -274,4 +273,5 @@
     background-color: #262e38;
     color: #fff;
     border-radius: 6px;
+    margin-top: 9px;
 }
