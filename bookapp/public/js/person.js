@@ -1,7 +1,8 @@
-function Ordelete() {
-	$(".mid-tabs-bb").click(function () {
-		var Ordata = $(this).children().attr("data-id");
-        $(this).addClass("Order");
+
+	$(".sum-6").click(function () {
+		$(this).parent().parent().addClass("Order");
+		var Ordata = $(".Order").children().attr("data-id");
+        
 		$.ajax({
 			type:"post",
 			url:"/ordelete",
@@ -12,4 +13,3 @@ function Ordelete() {
 		});
 	});
 
-}

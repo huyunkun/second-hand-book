@@ -11,7 +11,7 @@
         <div class="mid-main">
             <div class="one">
                 <div class="portrait">
-                    <a href=""><img src="img/01.jpg"><br/></a>
+                    <a href=""><img class="touxiang" src="img/01.jpg"><br/></a>
                     <span>{{ user }}</span>
                 </div>
                 <div class="mybook">
@@ -39,15 +39,16 @@
                 </div>
                 <div class="mid-tabs-bd">
                    
-                    <form class="sum" action="/upload" method="post" >
+                    <form class="sum" action="" method="post" name="geren" enctype="">
+                        <input id="photo" type="file" value="上传文件"   style="display: none">
                         <div class="sum-1">
                             <div class="sum-1-1 sumjuli">   
                                <div class="sum-1-txt sumtxt">我的头像</div>
                             </div>
                             <div class="sum-1-2">
                                 <div class="sum-1-img">
-                                    <a href="">
-                                        <img src="img/01.jpg">
+                                    <a href="javascript:getpicture()">
+                                        <img src="img/01.jpg"  class="mark">
                                     </a>
                                 </div>
                             </div>
@@ -65,7 +66,7 @@
                         </div>
                         <div class="sum-3">
                             <div class="sum-3-1 sumjuli">
-                                <button class="data-btn" >
+                                <button class="data-btn" onclick="baocundata()">
                                     保存基本信息
                                 </button>
                             </div>
@@ -78,4 +79,10 @@
             </div> -->
         </div>
     </div>
+{% endblock %}
+
+
+{% block scripts %}
+{%parent%}
+   <script type="text/javascript" src="../js/personal_data.js"></script>
 {% endblock %}

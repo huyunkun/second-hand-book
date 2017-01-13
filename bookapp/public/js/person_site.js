@@ -18,22 +18,25 @@
             document.site.submit();
         }
 
-        function Delete() {
-            $(".addsite").click(function () {
-                $(this).addClass('Site');
-                var data = $(this).children().attr("data-id");
+       
+            
+            $(".J-delete").click(function () {
+                $(this).parent().addClass('Site');
+                document.site.action = "/delete";
+                var data = $(".Site div:eq(0)").attr("data-id");
+                console.log(data);
                 
                 
-              $.ajax({
-                    type:"post",
-                    url:"/delete",
-                    data:{data:data},
-                    success:function (data) {
-                        $('.Site').remove();
-                    }
-                });
+                  $.ajax({
+                        type:"post",
+                        url:"/delete",
+                        data:{data:data},
+                        success:function (data) {
+                            $('.Site').remove();
+                        }
+                    });
             });
               
-            document.site.action = "/delete";
-            // document.site.submit();
-        }
+            
+           
+      

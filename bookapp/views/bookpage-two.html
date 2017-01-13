@@ -11,11 +11,71 @@
     <div class="bookpage-center">
         <div class="bookpage-warp">
             <dir class="left">
-                <img src="img/xiuxi.jpg">
+                <img src="img/xiuxi.jpg" class="bigimg">
+                <ul class="tb-thumb">
+                    <li class="minimg">
+                        <div href="#" class="minwarp J-minwarp">
+                            <img  src="img/xiuxi.jpg" class="">
+                        </div>
+                    </li>
+                     <li class="minimg">
+                        <a href="#" class="minwarp J-minwarp">
+                            <img src="img/xiuxi1.jpg">
+                        </a>
+                    </li>
+                     <li class="minimg">
+                        <a href="#" class="minwarp J-minwarp">
+                            <img src="img/xiuxi1.jpg" >
+                        </a>
+                    </li>
+                </ul>
             </dir>
             <form class="right" action="/addorder-two" method="post">
                 <p class="price ">漫长的中场休息-李安</p>
-                <p class="price bookname">价格：$27</p>
+                <div class="tm-back">
+                    <dl class="tm-price-panel">
+                        <dt class="tb-metatit">价格</dt>
+                        <dd>
+                            <em class="tm-yen">￥</em>
+                            <span class="tm-price tm-yuanjia">36.00</span>
+                        </dd>
+                    </dl>
+                    <dl class="tm-price-panel">
+                        <dt class="tb-metatit tb-cuxiao">促销价</dt>
+                        <dd>
+                            <em class="tm-yen tm-cu">￥</em>
+                            <span class="tm-price tm-cuxiao">27.00</span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="tb-meta">
+                    <dl class="tm-delivery-panel">
+                        <dt class="tb-metatit">运费</dt>
+                        <dd>
+                            <span class="yunfei">北京&nbsp;至&nbsp;成都&nbsp;:&nbsp;0.00</span>
+                        </dd>
+                    </dl>
+                </div>
+                <ul class="tm-ind-panel">
+                    <li class="tm-ind-item">
+                        <div class="tm-indcon">
+                            <span class="tm-label">月销量</span>
+                            <span class="tm-count">23634</span>
+                        </div>
+                    </li>
+                    <li class="tm-ind-item">
+                        <div class="tm-indcon">
+                            <span class="tm-label">送书店积分</span>
+                            <span class="tm-count">13</span>
+                        </div>
+                    </li>
+                    <li class="tm-ind-item">
+                        <div class="tm-indcon">
+                            <span class="tm-label">累积评价</span>
+                            <span class="tm-count">34521</span>
+                        </div>
+                    </li>
+                </ul>
                 <div class="amount">
                     <span class="amount-txt">数量</span>
                     <input type="txt" name="bookamount" class="bookamount" value="1">
@@ -25,10 +85,10 @@
                     </div>
                     
                 </div>
-                <button  class="buy">立即购买</button>
+                <button  class="buy">确认交换</button>
             </form>
-            <div class="three">
-                <img src="img/right.png" class="buttom-img">
+            <div class="zhuangshi">
+                <img src="img/qipao.png">
             </div>
         </div>
     </div>
@@ -36,25 +96,7 @@
 
 {% block scripts %}
 {%parent%}
-<script type="text/javascript">
-    $('.bookadd').click(function () {
-        var sum = 1;
-        sum = sum + Number($('.bookamount').val());
-        $('.bookamount').val(sum);
-        
-    });
-    $('.bookminus').click(function () {
-        var sum = 1;
-        var a = Number($('.bookamount').val()) - sum;
-        if (a > 1) {
-            $('.bookamount').val(a);
-        } else {
-            $('.bookamount').val(1);
-        }
-       
-        
-    });
-</script>
+<script type="text/javascript" src="../js/bookage.js"></script>
 {% endblock %}
 
 

@@ -5,6 +5,7 @@ var swig = require('swig');
 var moment = require('moment');
 var formidable = require('formidable');
 
+
 /* GET home page. */
 router.get('/formdata',function (req,res,next) {
     res.render('test/formdata',{});
@@ -75,8 +76,9 @@ router.get('/login',function (req,res,next) {
 /* GET personal. */
 router.get('/personal-data',function (req,res,next) {
     res.render('personal-data',{
-         user:req.session.username
-    });
+         user:req.session.username,
+         imgrul:req.session.imgrul
+            });
 })
 
 router.get('/personal',function (req,res,next) {
@@ -157,6 +159,7 @@ var SchemaP = mongoose.Schema({
 });
 
 var SchemaU = mongoose.Schema({
+    imgrul:String,
     userid:String,
     username:String,
     password:String,
@@ -212,6 +215,7 @@ router.post('/ulogin',function (req,res,next) {
     var password = md5.update(req.body.password).digest('base64');
    
     var newuser = new User({
+            imgrul:"blob:http://127.0.0.1:3000/21c5e7ab-32bb-4652-88e6-09cbd20015fc",
             userid:req.body.username + "1",
             username:req.body.username,
             password:password,
@@ -236,7 +240,7 @@ router.post('/ulogin',function (req,res,next) {
 })
 //用户登陆
 router.post('/uenter',function (req,res,next) {
-
+     
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
     User.find({'username':req.body.username},function (err,user) {
@@ -245,7 +249,8 @@ router.post('/uenter',function (req,res,next) {
                 &&password == user[i].password) {
                 req.session.username = user[i].username;
                 req.session.userid = user[i].userid;
-                
+                req.session.imgrul = user[i].imgrul;
+
                 return res.redirect('/bookrack');
             }
         }
@@ -270,7 +275,7 @@ router.post('/addorder',function (req,res,next) {
         ordername:"时生",
         orderprice:"$34",
         ordertime:moment().format('MMM Do YY'),
-        orderstate: "代发货",
+        orderstate: "代付款",
         orderamount:req.body.bookamount
     }); 
 
@@ -295,7 +300,7 @@ router.post('/addorder-three',function (req,res,next) {
         ordername:"幻夜",
         orderprice:"$30",
         ordertime:moment().format('MMM Do YY'),
-        orderstate: "代发货",
+        orderstate: "代付款",
         orderamount:req.body.bookamount
     }); 
     orderdata_three.save(function (err) {
@@ -318,7 +323,7 @@ router.post('/addorder-two',function (req,res,next) {
         ordername:"漫长的中场休息",
         orderprice:"$27",
         ordertime:moment().format('MMM Do YY'),
-        orderstate: "代发货",
+        orderstate: "代主人确认",
         orderamount:req.body.bookamount
     }); 
 
@@ -411,6 +416,39 @@ router.post('/search',function (req,res,next) {
     }
 });
 
+// router.post('/touxiang',function (req,res,next) {
+    
+//     var message = '';
+//     var form = new formidable.IncomingForm();//创建上传表单
+//     form.encoding = 'utf-8';//设置编辑
+//     form.uploadDir = 'public/uploads'; //设置上传目录
+//     form.keepExtensions = true;//保留后缀
+//     form.maxFieldsSie = 2 * 1024 * 1024; //文件大小
 
+//     form.parse(req,function (err,fields,files) {
+//         console.log(files.upload.name);
+//         // var filename = files.upload.name;
+//         // var filepath = files.upload.path;
+        
+//         var file = new File({
+//             file_name: filename,
+//             file_path: filepath
+//         });
+
+//         if ( file.file_name == ""||file.file_path == "") {
+//             console.log("err");
+//             res.redirect('/personal-data');
+//         } else {
+//             file.save(function (err) {
+//                 if (err) {
+//                     console.log("提交失败");
+//                 } else {
+//                     console.log("success");
+//                     res.redirect('/personal-data');
+//                 }
+//             });
+//         }
+//     });
+// });
 
 module.exports = router;
