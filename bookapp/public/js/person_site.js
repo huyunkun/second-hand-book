@@ -21,7 +21,7 @@
        
             
             $(".J-delete").click(function () {
-                $(this).parent().addClass('Site');
+                $(this).parent().parent().addClass('Site');
                 document.site.action = "/delete";
                 var data = $(".Site div:eq(0)").attr("data-id");
                 console.log(data);

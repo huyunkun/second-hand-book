@@ -19,3 +19,7 @@ $('.bookadd').click(function () {
         // console.log( $(this).children());
         $(".bigimg").attr("src",imgsrc);
     });
+
+    $('.pay').click(function () {
+        document.page.action = "/pay" ;
+    })

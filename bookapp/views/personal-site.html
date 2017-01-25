@@ -43,19 +43,24 @@
                             </div>
                         </div>     
                 </div>
-                    <div class="sum">
+                <div class="sum-warp" style="width: 720px;height:50px;">
+                     <div class="sum">
                         <div class="sum-1 bd">姓名</div>
                         <div class="sum-2 bd">地址</div>
                         <div class="sum-3 bd">电话</div>
                     </div> 
+                </div>
+                   
                     {% for item in site %}
                         {% if userId == item.siteid %}
-                            <div class="addsite" >
+                        <div class="addsite-warp">
+                             <div class="addsite" >
                                 <div class="sum-1 bd" data-id="{{item.id}}">{{item.sitename}}</div>
                                 <div class="sum-2 bd">{{item.siteaddress}}</div>
                                 <div class="sum-3 bd">{{item.phone}}</div>
                                 <input type="button" value="删除" class="sum-4 J-delete" id="delete" >
                             </div>
+                        </div>
                         {% endif %}
                     {% endfor %}
         </div>

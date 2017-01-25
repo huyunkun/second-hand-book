@@ -274,4 +274,13 @@
     color: #fff;
     border-radius: 6px;
     margin-top: 9px;
+    margin-left: 65px;
+}
+.sum-warp {
+	border-bottom: 1px solid #ccc;
+}
+.addsite-warp {
+	width: 720px;
+	height: 50px;
+	border-bottom: 1px solid #ccc;
 }
